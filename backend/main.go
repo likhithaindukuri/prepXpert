@@ -4,6 +4,7 @@ import (
     "prepXpert-backend/config"
     "prepXpert-backend/models"
     "github.com/gin-gonic/gin"
+    "prepXpert-backend/routes"
 )
 
 func main() {
@@ -20,4 +21,5 @@ func main() {
     })
 
     r.Run(":8080") // Start server on port 8080
+    routes.AuthRoutes(r)
 }
