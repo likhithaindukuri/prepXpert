@@ -43,6 +43,8 @@ const Navbar = () => {
           <li><NavItem to="/about" label="About" /></li>
           <li><NavItem to="/practice" label="Practice" /></li>
           <li><NavItem to="/mocktest" label="Mock Test" /></li>
+          <li><NavItem to="/results" label="Results" /></li>
+
         </ul>
         <div style={authButtonsStyle}>
           {!isLoggedIn ? (

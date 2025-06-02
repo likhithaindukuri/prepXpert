@@ -7,6 +7,8 @@ import Practice from "./pages/Practice";
 import MockTest from "./pages/MockTest";
 import LoginForm from "./components/auth/LoginForm";
 import RegisterForm from "./components/auth/RegisterForm";
+import MockTestStart from "./pages/MockTestStart";
+import Results from "./pages/Results";
 
 import "./styles.css";
 
@@ -44,7 +46,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/practice" element={<Practice />} />
-        <Route path="/mocktest" element={<MockTest />} />
+        <Route path="/mocktest" element={<MockTest />} />   
+        <Route path="/mocktest/start" element={<MockTestStart />} />
+        <Route path="/results" element={<Results />} />
       </Routes>
     </Router>
   );
