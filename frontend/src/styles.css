@@ -93,3 +93,185 @@ footer {
   color: #7f8c8d;
   font-size: 0.9rem;
 }
+
+/* Auth Form Styles */
+input:focus {
+  border-color: #e67e22 !important;
+  box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.1) !important;
+  outline: none;
+}
+
+button[type="submit"]:hover {
+  background-color: #d35400 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4) !important;
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+button[aria-label="Close"]:hover {
+  background-color: #ecf0f1 !important;
+  color: #2c3e50 !important;
+}
+
+/* Home Page Interactive Styles */
+.feature-card {
+  transition: all 0.3s ease !important;
+}
+
+.feature-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* About Page Interactive Styles */
+.benefit-card {
+  transition: all 0.3s ease !important;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  border-color: #e67e22 !important;
+}
+
+/* Practice Page Interactive Styles */
+.topic-card {
+  transition: all 0.3s ease !important;
+}
+
+.topic-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12) !important;
+  border-color: #e67e22 !important;
+}
+
+.topic-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4) !important;
+}
+
+.back-button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateX(-3px) !important;
+}
+
+.submit-button:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4) !important;
+}
+
+.submit-button:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+.pagination-button:hover:not(:disabled) {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4) !important;
+}
+
+.pagination-button:disabled:hover {
+  transform: none !important;
+  box-shadow: none !important;
+  cursor: not-allowed !important;
+}
+
+.explanation-button:hover {
+  background-color: #2980b9 !important;
+  transform: translateY(-2px) !important;
+}
+
+.option-label:hover {
+  border-color: #e67e22 !important;
+  background-color: #fff5f0 !important;
+}
+
+.question-card {
+  transition: all 0.3s ease !important;
+}
+
+.question-card:hover {
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* Mock Test Page Interactive Styles */
+.mock-test-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(230, 126, 34, 0.4) !important;
+}
+
+.mock-option-button:hover {
+  border-color: #e67e22 !important;
+  background-color: #fff5f0 !important;
+  transform: translateX(5px) !important;
+}
+
+.mock-option-button[style*="selectedOptionStyle"]:hover {
+  background-color: #ffe5d6 !important;
+}
+
+.mock-nav-button:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4) !important;
+}
+
+/* Results Page Interactive Styles */
+.action-button:hover {
+  transform: translateY(-2px) !important;
+}
+
+.action-button[style*="e67e22"]:hover {
+  box-shadow: 0 4px 12px rgba(230, 126, 34, 0.4) !important;
+}
+
+.action-button[style*="3498db"]:hover {
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.4) !important;
+}
+
+.action-button[style*="transparent"]:hover {
+  background-color: #2c3e50 !important;
+  color: #ffffff !important;
+}
+
+/* Dashboard Page Interactive Styles */
+.overview-card {
+  transition: all 0.3s ease !important;
+}
+
+.overview-card:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Dashboard Topic Items Hover */
+div[style*="topicItemStyle"]:hover {
+  transform: translateX(5px) !important;
+  box-shadow: 0 2px 8px rgba(230, 126, 34, 0.15) !important;
+  border-color: #e67e22 !important;
+}
+
+.stat-card {
+  transition: all 0.3s ease !important;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Hero Section Button Hover Effects */
+.hero-primary-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(230, 126, 34, 0.4) !important;
+}
+
+.hero-secondary-btn:hover {
+  background-color: #ffffff !important;
+  color: #2c3e50 !important;
+  transform: translateY(-2px) !important;
+}

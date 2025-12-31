@@ -40,11 +40,10 @@ const Navbar = () => {
         <div className="logo" style={logoStyle}>prepXpert</div>
         <ul style={ulStyle}>
           <li><NavItem to="/" label="Home" /></li>
-          <li><NavItem to="/about" label="About" /></li>
           <li><NavItem to="/practice" label="Practice" /></li>
           <li><NavItem to="/mocktest" label="Mock Test" /></li>
+          <li><NavItem to="/dashboard" label="Dashboard" /></li>
           <li><NavItem to="/results" label="Results" /></li>
-
         </ul>
         <div style={authButtonsStyle}>
           {!isLoggedIn ? (
@@ -67,6 +66,7 @@ const Navbar = () => {
                 setIsLoggedIn(true);
                 navigate("/");
               }}
+              onClose={closeModals}
             />
           </div>
         </div>
@@ -81,6 +81,7 @@ const Navbar = () => {
                 setIsLoggedIn(true);
                 navigate("/");
               }}
+              onClose={closeModals}
             />
           </div>
         </div>
@@ -162,9 +163,12 @@ const modalOverlay = {
 
 const modalContent = {
   backgroundColor: "white",
-  padding: "30px",
-  borderRadius: "8px",
-  width: "350px",
+  padding: "2.5rem",
+  borderRadius: "12px",
+  width: "100%",
+  maxWidth: "450px",
+  boxShadow: "0 10px 40px rgba(0, 0, 0, 0.15)",
+  position: "relative",
 };
 
 export default Navbar;

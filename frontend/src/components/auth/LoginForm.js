@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const LoginForm = ({ onSuccess }) => {
+const LoginForm = ({ onSuccess, onClose }) => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -42,7 +42,7 @@ const LoginForm = ({ onSuccess }) => {
       if (res.ok) {
         localStorage.setItem("token", data.token);
         alert("Login successful!");
-        if (typeof onSuccess === "function") onSuccess(); // Close modal & redirect
+        if (typeof onSuccess === "function") onSuccess();
         fetchProfile(data.token);
       } else {
         setError(data.error || "Invalid credentials");
@@ -72,72 +72,180 @@ const LoginForm = ({ onSuccess }) => {
   };
 
   return (
-    <div>
+    <div style={containerStyle}>
+      <div style={headerStyle}>
+        <h2 style={titleStyle}>Welcome Back</h2>
+        {onClose && (
+          <button onClick={onClose} style={closeButtonStyle} aria-label="Close">
+            ×
+          </button>
+        )}
+      </div>
+      <p style={subtitleStyle}>Sign in to continue to prepXpert</p>
+
       <form onSubmit={handleSubmit} style={formStyle}>
-        <h2 style={{ marginBottom: "1rem" }}>Login</h2>
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && (
+          <div style={errorStyle}>
+            <span style={errorIconStyle}>⚠</span>
+            <span>{error}</span>
+          </div>
+        )}
 
-        <input
-          type="email"
-          name="email"
-          placeholder="Email"
-          value={formData.email}
-          onChange={handleChange}
-          style={inputStyle}
-        />
+        <div style={inputGroupStyle}>
+          <input
+            type="email"
+            name="email"
+            placeholder="Email address"
+            value={formData.email}
+            onChange={handleChange}
+            style={inputStyle}
+            required
+          />
+        </div>
 
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          value={formData.password}
-          onChange={handleChange}
-          style={inputStyle}
-        />
+        <div style={inputGroupStyle}>
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            value={formData.password}
+            onChange={handleChange}
+            style={inputStyle}
+            required
+          />
+        </div>
 
-        <button type="submit" style={buttonStyle}>Login</button>
+        <button type="submit" style={buttonStyle}>
+          Sign In
+        </button>
       </form>
 
       {profile && (
         <div style={profileStyle}>
-          <h3>Welcome, {profile.name}</h3>
-          <p>Email: {profile.email}</p>
+          <h3 style={profileTitleStyle}>Welcome, {profile.name}</h3>
+          <p style={profileTextStyle}>Email: {profile.email}</p>
         </div>
       )}
     </div>
   );
 };
 
+const containerStyle = {
+  width: "100%",
+  maxWidth: "420px",
+  margin: "0 auto",
+};
+
+const headerStyle = {
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  marginBottom: "0.5rem",
+};
+
+const titleStyle = {
+  fontSize: "1.75rem",
+  fontWeight: "700",
+  color: "#2c3e50",
+  margin: 0,
+};
+
+const subtitleStyle = {
+  fontSize: "0.95rem",
+  color: "#7f8c8d",
+  marginBottom: "1.75rem",
+  marginTop: 0,
+};
+
+const closeButtonStyle = {
+  background: "none",
+  border: "none",
+  fontSize: "2rem",
+  color: "#7f8c8d",
+  cursor: "pointer",
+  padding: 0,
+  width: "32px",
+  height: "32px",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  borderRadius: "50%",
+  transition: "all 0.2s ease",
+  lineHeight: 1,
+};
+
 const formStyle = {
-  width: "300px",
-  margin: "auto",
+  display: "flex",
+  flexDirection: "column",
+  gap: "1.25rem",
+};
+
+const inputGroupStyle = {
   display: "flex",
   flexDirection: "column",
 };
 
 const inputStyle = {
-  padding: "10px",
-  marginBottom: "10px",
-  borderRadius: "5px",
-  border: "1px solid #ccc",
+  padding: "0.875rem 1rem",
+  fontSize: "1rem",
+  borderRadius: "8px",
+  border: "2px solid #e0e0e0",
+  backgroundColor: "#ffffff",
+  color: "#2c3e50",
+  transition: "all 0.3s ease",
+  outline: "none",
+  fontFamily: "inherit",
 };
 
 const buttonStyle = {
-  padding: "10px",
-  backgroundColor: "#3498db",
-  color: "white",
+  padding: "0.875rem 1.5rem",
+  fontSize: "1rem",
+  fontWeight: "600",
+  backgroundColor: "#e67e22",
+  color: "#ffffff",
   border: "none",
-  borderRadius: "5px",
+  borderRadius: "8px",
   cursor: "pointer",
+  transition: "all 0.3s ease",
+  marginTop: "0.5rem",
+  boxShadow: "0 2px 8px rgba(230, 126, 34, 0.3)",
+};
+
+const errorStyle = {
+  display: "flex",
+  alignItems: "center",
+  gap: "0.5rem",
+  padding: "0.75rem 1rem",
+  backgroundColor: "#fee",
+  border: "1px solid #fcc",
+  borderRadius: "8px",
+  color: "#c33",
+  fontSize: "0.9rem",
+};
+
+const errorIconStyle = {
+  fontSize: "1.1rem",
 };
 
 const profileStyle = {
-  width: "300px",
-  margin: "2rem auto",
-  padding: "1rem",
-  border: "1px solid #ddd",
-  borderRadius: "10px",
-  backgroundColor: "#f7f7f7",
+  marginTop: "1.5rem",
+  padding: "1.25rem",
+  backgroundColor: "#f8f9fa",
+  border: "1px solid #e0e0e0",
+  borderRadius: "8px",
+};
+
+const profileTitleStyle = {
+  fontSize: "1.1rem",
+  color: "#2c3e50",
+  marginBottom: "0.5rem",
+  marginTop: 0,
+};
+
+const profileTextStyle = {
+  fontSize: "0.9rem",
+  color: "#7f8c8d",
+  margin: 0,
 };
 
 export default LoginForm;

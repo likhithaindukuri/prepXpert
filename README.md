@@ -55,9 +55,7 @@
     <img src="./frontend/public/7.png" alt="OCR" width="550"  height="250">
 </p>
 
-<p align="center">
-    <img src="./frontend/public/8.png" alt="OCR" width="550"  height="250">
-</p>
+
 
 
 ## Future work
