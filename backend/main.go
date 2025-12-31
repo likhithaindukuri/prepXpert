@@ -4,13 +4,15 @@ import (
 	"fmt"
 	"log"
 	"net/http"
+	"os"
 
-	"github.com/gorilla/mux"
-	"github.com/rs/cors"
+	"prepXpert/db"
 	"prepXpert/handlers"
 	"prepXpert/middleware"
 	"prepXpert/questions"
-	"prepXpert/db"
+
+	"github.com/gorilla/mux"
+	"github.com/rs/cors"
 )
 
 func main() {
@@ -30,7 +32,19 @@ func main() {
 	r.Handle("/api/questions", middleware.JwtAuthMiddleware(http.HandlerFunc(questions.GetQuestions))).Methods("GET")
 	r.Handle("/api/questions/add", middleware.JwtAuthMiddleware(http.HandlerFunc(questions.AddQuestion))).Methods("POST")
 
-	handler := cors.Default().Handler(r)
-	fmt.Println("Server running at http://localhost:8080")
-	log.Fatal(http.ListenAndServe(":8080", handler))
+	c := cors.New(cors.Options{
+		AllowedOrigins:   []string{os.Getenv("FRONTEND_URL"), "http://localhost:3000"},
+		AllowedMethods:   []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+		AllowedHeaders:   []string{"*"},
+		AllowCredentials: true,
+	})
+	handler := c.Handler(r)
+
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "8080"
+	}
+
+	fmt.Println("Server running at http://localhost:" + port)
+	log.Fatal(http.ListenAndServe(":"+port, handler))
 }
