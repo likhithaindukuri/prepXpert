@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "../../api/axios";
 
 const RegisterForm = ({ onSuccess, onClose }) => {
   const [formData, setFormData] = useState({
@@ -31,15 +32,10 @@ const RegisterForm = ({ onSuccess, onClose }) => {
 
   const registerUser = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await axios.post("/register", formData);
+      const data = res.data;
 
-      const data = await res.json();
-
-      if (res.ok) {
+      if (res.status === 200 || res.status === 201) {
         alert(data.message || "Registered successfully!");
         setFormData({ name: "", email: "", password: "" });
         if (typeof onSuccess === "function") onSuccess();
@@ -48,7 +44,7 @@ const RegisterForm = ({ onSuccess, onClose }) => {
       }
     } catch (err) {
       console.error(err);
-      setError("Server error. Please try again.");
+      setError(err.response?.data?.error || "Server error. Please try again.");
     }
   };
 

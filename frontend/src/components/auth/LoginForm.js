@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "../../api/axios";
 
 const LoginForm = ({ onSuccess, onClose }) => {
   const [formData, setFormData] = useState({
@@ -31,15 +32,10 @@ const LoginForm = ({ onSuccess, onClose }) => {
 
   const loginUser = async () => {
     try {
-      const res = await fetch("http://localhost:8080/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await axios.post("/login", formData);
+      const data = res.data;
 
-      const data = await res.json();
-
-      if (res.ok) {
+      if (res.status === 200) {
         localStorage.setItem("token", data.token);
         alert("Login successful!");
         if (typeof onSuccess === "function") onSuccess();
@@ -49,18 +45,16 @@ const LoginForm = ({ onSuccess, onClose }) => {
       }
     } catch (err) {
       console.error(err);
-      setError("Server error. Please try again.");
+      setError(err.response?.data?.error || "Server error. Please try again.");
     }
   };
 
   const fetchProfile = async (token) => {
     try {
-      const res = await fetch("http://localhost:8080/api/profile", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get("/profile");
 
-      if (res.ok) {
-        const data = await res.json();
+      if (res.status === 200) {
+        const data = res.data;
         setProfile(data);
       } else {
         setError("Failed to fetch profile.");
