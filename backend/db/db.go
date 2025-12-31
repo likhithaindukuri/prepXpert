@@ -16,6 +16,16 @@ func Init() {
 
 	// First, try to use DATABASE_URL (provided by Render when database is linked)
 	databaseURL := os.Getenv("DATABASE_URL")
+
+	// If DB_HOST looks like a full URL, use it as DATABASE_URL
+	if databaseURL == "" {
+		dbHost := os.Getenv("DB_HOST")
+		if dbHost != "" && len(dbHost) > 11 && (dbHost[:7] == "postgres" || dbHost[:11] == "postgresql:") {
+			databaseURL = dbHost
+			log.Println("Detected full database URL in DB_HOST, using it as DATABASE_URL")
+		}
+	}
+
 	if databaseURL != "" {
 		connStr = databaseURL
 		log.Println("Using DATABASE_URL for connection")
